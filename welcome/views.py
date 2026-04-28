@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class SignUpView(CreateView):
@@ -13,6 +14,8 @@ class SignUpView(CreateView):
 class CustomLoginView(LoginView):
   template_name='welcome/login.html'
 
+
+@login_required
 def login_success(request):
   return render(request, 'welcome/login_success.html')
 
